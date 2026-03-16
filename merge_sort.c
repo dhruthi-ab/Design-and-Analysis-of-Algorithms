@@ -1,47 +1,55 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 int count;
-void merge(int A[10],int l,int m,int r)
-{
-    int i,j,k,B[10];
-    i=l;
-    j=m+1;
-    k=l;
-    while(i<=m && j<=r)
-    {
+
+void merge(int A[10], int l, int m, int r) {
+    int i, j, k, B[10];
+    i = l;
+    j = m + 1;
+    k = l;
+
+    while (i <= m && j <= r) {
         count++;
-        i++;
+        if (A[i] <= A[j])   
+            B[k++] = A[i++];
+        else
+            B[k++] = A[j++];
     }
-    while(i<=m)
-        B[k++]=A[i++];
-    while(j<=r)
-        B[k++]=A[j++];
-    for(i=l;i<=r;i++)
-        A[i]=B[i];
+
+    while (i <= m)
+        B[k++] = A[i++];
+    while (j <= r)
+        B[k++] = A[j++];
+
+    for (i = l; i <= r; i++)
+        A[i] = B[i];
 }
-void merge_Sort(int A[10],int l,int r)
-{
+
+void merge_Sort(int A[10], int l, int r) {
     int m;
-    if(l<r)
-    {
-        m=(l+r)/2;
-        merge_sort(A,l,m);
-        merge_sort(A,m+1,r);
-        merge(A,l,m,r);
+    if (l < r) {
+        m = (l + r) / 2;
+        merge_Sort(A, l, m);      
+        merge_Sort(A, m + 1, r);  
+        merge(A, l, m, r);
     }
 }
-int main()
-{
-    int i,n,A[10];
+
+int main() {
+    int i, n, A[10];
     printf("\nRead Array size: ");
-    scanf("%d",&n);
+    scanf("%d", &n);
     printf("\nRead array elements:\n");
-    for(i=0;i<n;i++)
-        scanf("%d",&A[i]);
-    merge_sort(A,0,n-1);
+    for (i = 0; i < n; i++)
+        scanf("%d", &A[i]);
+
+    merge_Sort(A, 0, n - 1);   
+
     printf("\nSorted elements are:\n");
-    for(i=0;i<n;i++)
-        printf("%d\t",A[i]);
-    printf("\nTotal number of comparisons= %d",count);
+    for (i = 0; i < n; i++)
+        printf("%d\t", A[i]);
+
+    printf("\nTotal number of comparisons= %d", count);
     return 0;
 }
