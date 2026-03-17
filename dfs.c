@@ -29,7 +29,7 @@ int main()
         dfs(a,n,visited,i);
    }
    printf("\n topological ordering is \n");
-   for(i=k;i>=n;i--)
+   for(i=k;i>=1;i--)
     printf("%d\t",topo[i]);
    return 0;
 }
