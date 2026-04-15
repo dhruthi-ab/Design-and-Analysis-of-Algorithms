@@ -34,5 +34,23 @@ int main()
         }
         printf("\n");
     }
+    i=n;
+    j=W;
+    while(i!=0 && j!=0)
+    {
+        if(V[i][j]!=V[i-1][j])
+        {
+            x[i]=1;
+            j=j-w[i];
+        }
+        i=i-1;
+    }
+    printf("\n the maximum profit is %d",V[n][W]);
+    printf("\n object\t weight\t profit\n");
+    for(i=1;i<=n;i++)
+    {
+        if(x[i]==1)
+            printf("%d\t %d\t %d\n",i,w[i],p[i]);
+    }
     return 0;
 }
