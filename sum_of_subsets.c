@@ -10,7 +10,7 @@ void sum_of_subsets(int s,int k,int r)
     if(w[k]+s==d)
     {
         printf("\n solution %d = ",count++);
-        for(i=1;i<=n;i++)
+        for(i=1;i<=k;i++)
         {
             if(x[i]==1)
                 printf("%d \t",w[i]);
